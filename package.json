@@ -1,0 +1,31 @@
+{
+  "name": "calsot-sdk",
+  "version": "0.0.1",
+  "description": "",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "compile": "tsc",
+    "check": "tsc --noEmit",
+    "prepare": "rm -rf dist && npm run compile",
+    "lint": "eslint --ext ts src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rmoralp/calsot-sdk.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rmoralp/calsot-sdk/issues"
+  },
+  "homepage": "https://github.com/rmoralp/calsot-sdk#readme",
+  "devDependencies": {
+    "@maons/lint": "0",
+    "@maons/tsconfig": "0",
+    "typescript": "4.9.5"
+  },
+  "eslintConfig": {
+    "extends": "../../node_modules/@maons/lint/.eslintrc.js"
+  }
+}

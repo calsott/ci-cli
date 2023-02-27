@@ -1,0 +1,17 @@
+{
+  "extends": "./node_modules/@maons/tsconfig/base.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "lib": ["ES2015", "dom"],
+    "module": "CommonJS",
+    "target": "es6",
+    "sourceMap": true
+  },
+  "include": ["./src"],
+  "exclude": [
+    "dist",
+    "build",
+    "node_modules",
+    "src/**/*.test.ts"
+  ]
+}
