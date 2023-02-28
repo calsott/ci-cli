@@ -69,7 +69,6 @@ async function getGithubActionsData() {
 }
 
 async function getDataFromCI() {
-  console.log('isGithubActions', process.env.GITHUB_ACTIONS)
   if (process.env.GITHUB_ACTIONS) {
     return getGithubActionsData()
   }

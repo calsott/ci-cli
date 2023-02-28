@@ -26,7 +26,7 @@ async function start() {
   console.log('starting...')
   const config = loadRcFile('./.calsot.json')
 
-  const build = getBuild()
+  const build = await getBuild()
 
   if (!build) {
     console.log('not in CI')
