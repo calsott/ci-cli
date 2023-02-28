@@ -5,10 +5,12 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "compile": "tsc",
+    "build": "tsc",
     "check": "tsc --noEmit",
-    "prepare": "rm -rf dist && npm run compile",
-    "lint": "eslint --ext ts src"
+    "prepare": "rm -rf dist && npm run build",
+    "lint": "eslint --ext ts src",
+    "test": "vitest",
+    "test:ci": "vitest --run"
   },
   "repository": {
     "type": "git",
@@ -23,9 +25,15 @@
   "devDependencies": {
     "@maons/lint": "0",
     "@maons/tsconfig": "0",
-    "typescript": "4.9.5"
+    "typescript": "4.9.5",
+    "vitest": "0.29.1"
   },
   "eslintConfig": {
-    "extends": "../../node_modules/@maons/lint/.eslintrc.js"
+    "extends": "./node_modules/@maons/lint/.eslintrc.js"
+  },
+  "prettier": "@maons/lint/.prettierrc.js",
+  "dependencies": {
+    "execa": "5.1.1",
+    "lighthouse": "10.0.1"
   }
 }
