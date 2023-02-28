@@ -27,6 +27,7 @@ jobs:
       run: npm run prepare
 
     - name: "Install"
-      run: chrome --version
-      run: node ./dist/index.js
+      run: |
+        chrome --version
+        node ./dist/index.js
 
