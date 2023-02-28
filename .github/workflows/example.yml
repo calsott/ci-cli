@@ -19,7 +19,6 @@ jobs:
 
     - name: "Setup Chrome"
       uses: browser-actions/setup-chrome@v1
-      run: chrome --version
 
     - name: "Install"
       run: npm ci
@@ -28,5 +27,6 @@ jobs:
       run: npm run prepare
 
     - name: "Install"
+      run: chrome --version
       run: node ./dist/index.js
 
