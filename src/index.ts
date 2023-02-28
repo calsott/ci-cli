@@ -11,7 +11,9 @@ async function run({url}) {
       '--output',
       'json',
       '--output-path',
-      'stdout'
+      'stdout',
+      '--chrome-flags',
+      '"--no-sandbox --headless --disable-gpu"'
     ])
     return stdout
   } catch (error) {
