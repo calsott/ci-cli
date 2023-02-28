@@ -26,10 +26,10 @@ async function start() {
 
   const build = getBuild()
 
-  // if (!build) {
-  //   console.log('not in CI')
-  //   return
-  // }
+  if (!build) {
+    console.log('not in CI')
+    return
+  }
 
   const runs = []
 
@@ -47,6 +47,14 @@ async function start() {
   }
 
   // submit to server
+
+  console.log(JSON.stringify(build))
+  console.log('---')
+  console.log('---')
+  console.log('---')
+  console.log('---')
+  console.log('---')
+  console.log(JSON.stringify(runs))
 
   console.log(`all done`)
 }

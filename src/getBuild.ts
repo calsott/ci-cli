@@ -18,22 +18,22 @@ import {readFile} from 'fs/promises'
 // })
 
 const fakeData = {
-  name: 'fake#º',
+  name: '',
   branch: 'main',
   commitMessage: 'chore: Fake',
-  commitHash: 'fake',
-  committedAt: 'fake',
-  ancestorHash: 'fake',
-  ancestorCommittedAt,
-  author,
-  avatarUrl,
-  runAt,
-  externalBuildUrl
+  commitHash: '',
+  committedAt: '',
+  ancestorHash: '',
+  ancestorCommittedAt: '',
+  author: '',
+  avatarUrl: '',
+  runAt: '',
+  externalBuildUrl: ''
 }
 
 const getGitHubEvent = async () => {
   try {
-    const file = await readFile(GITHUB_EVENT_PATH, 'utf-8')
+    const file = await readFile(process.env.GITHUB_EVENT_PATH, 'utf-8')
     return JSON.parse(file)
   } catch (e) {
     return {}
@@ -43,25 +43,28 @@ const getGitHubEvent = async () => {
 async function getGithubActionsData() {
   const githubEvent = await getGitHubEvent()
 
-  const runAt = new Date().toISOString()
-  const externalBuildUrl = `${process.env.GITHUB_SERVER_URL}${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`
-
   const author =
-    githubEvent?.head_commit?.author?.username || process.env.GITHUB_ACTOR
-  const avatarUrl = githubEvent?.head_commit?.author?.avatar_url
+    githubEvent?.head_commit?.author?.email || process.env.GITHUB_ACTOR
+  const branch = process.env.GITHUB_REF_NAME
+  const commitHash = githubEvent?.head_commit?.id
+  const commitMessage = githubEvent?.head_commit?.message
+  const committedAt = githubEvent?.head_commit?.timestamp
+  const externalBuildUrl = `${process.env.GITHUB_SERVER_URL}${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`
+  const name = process.env.GITHUB_WORKFLOW
+  const runAt = new Date().toISOString()
 
   return {
-    name: process.env.GITHUB_WORKFLOW,
-    branch: process.env.GITHUB_REF_NAME, // ok
-    commitMessage: process.env.GITHUB_COMMIT_MESSAGE,
-    commitHash: process.env.GITHUB_SHA, // ok
-    committedAt: process.env.GITHUB_COMMIT_DATE,
-    ancestorHash: process.env.GITHUB_BASE_REF,
-    ancestorCommittedAt: process.env.GITHUB_BASE_REF,
+    // ancestorCommittedAt: process.env.GITHUB_BASE_REF,
+    // ancestorHash: process.env.GITHUB_BASE_REF,
+    // avatarUrl,
     author,
-    avatarUrl,
-    runAt,
-    externalBuildUrl
+    branch,
+    commitHash,
+    commitMessage,
+    committedAt,
+    externalBuildUrl,
+    name,
+    runAt
   }
 }
 
@@ -70,9 +73,9 @@ async function getDataFromCI() {
     return getGithubActionsData()
   }
 
-  return fakeData
+  return {}
 }
 
 export async function getBuild() {
-  return getDataFromCI() || {}
+  return getDataFromCI()
 }

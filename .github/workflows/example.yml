@@ -18,5 +18,11 @@ jobs:
         node-version: 18
 
     - name: "Install"
-      run: node ./log.js
+      run: npm ci
+
+    - name: "Prepare"
+      run: npm run prepare
+
+    - name: "Install"
+      run: node ./dist/index.js
 
