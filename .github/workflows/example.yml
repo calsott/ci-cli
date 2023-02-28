@@ -18,5 +18,5 @@ jobs:
         node-version: 18
 
     - name: "Install"
-      run: npm ci
+      run: node ./log.js
 
