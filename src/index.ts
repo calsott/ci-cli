@@ -1,4 +1,7 @@
+// import {writeFile} from 'fs'
+
 import {getBuild} from './getBuild'
+import {trace} from './trace'
 import {loadRcFile} from './utils/loadRcFile'
 
 const execa = require('execa')
@@ -11,7 +14,11 @@ async function run({url}) {
       '--output',
       'json',
       '--output-path',
+      // `${new Date().getTime()}.json`,
       'stdout',
+      '--skip-audits',
+      'screenshot-thumbnails,final-screenshot',
+      '--disable-full-page-screenshot',
       '--chrome-flags',
       '"--no-sandbox --headless --disable-gpu"'
     ])
@@ -42,21 +49,27 @@ async function start() {
       runs.push({
         url,
         representative: true,
-        lhr: JSON.stringify(result)
+        lhr: result
       })
+
+      // writeFile(
+      //   `${new Date().getTime()}.json`,
+      //   JSON.stringify(result),
+      //   'utf8',
+      //   err => {
+      //     if (err) {
+      //       console.log(err)
+      //     }
+      //   }
+      // )
       console.log(`url ${url} done`)
     }
   }
 
-  // submit to server
-
-  console.log(JSON.stringify(build))
-  console.log('---')
-  console.log('---')
-  console.log('---')
-  console.log('---')
-  console.log('---')
-  console.log(JSON.stringify(runs))
+  trace({
+    build,
+    runs
+  })
 
   console.log(`all done`)
 }
