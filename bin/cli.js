@@ -1,2 +1,12 @@
 #!/usr/bin/env node
-require('../dist/index.js')
+const {program} = require('commander')
+const {start} = require('../dist/index.js')
+const {version} = require('../package.json')
+
+program.version(version, '    --version')
+
+program.option('--config <path>', 'Path to config file').parse()
+
+const {config} = program.opts(process.argv)
+
+start({rcFilePath: config})

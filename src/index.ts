@@ -1,10 +1,11 @@
-// import {writeFile} from 'fs'
-
+/* eslint-disable no-console */
 import {getBuild} from './getBuild'
 import {trace} from './trace'
 import {loadRcFile} from './utils/loadRcFile'
 
 const execa = require('execa')
+
+const defaultRcFilePath = './.calsot.json'
 
 async function run({url}) {
   try {
@@ -24,21 +25,23 @@ async function run({url}) {
     ])
     return stdout
   } catch (error) {
-    console.log(error) // eslint-disable-line no-console
+    // TODO: handle error
     return null
   }
 }
 
-async function start() {
-  console.log('starting...')
-  const config = loadRcFile('./.calsot.json')
-
+export async function start({rcFilePath = defaultRcFilePath} = {}) {
+  console.log('> Starting audit...')
+  const config = loadRcFile(rcFilePath)
   const build = await getBuild()
 
   if (!build) {
     console.log('not in CI')
     return
   }
+
+  console.log(`> Build data collected from ${build.name}`)
+  console.log(`> Auditing ${config.urls.length} urls...`)
 
   const runs = []
 
@@ -52,26 +55,16 @@ async function start() {
         lhr: result
       })
 
-      // writeFile(
-      //   `${new Date().getTime()}.json`,
-      //   JSON.stringify(result),
-      //   'utf8',
-      //   err => {
-      //     if (err) {
-      //       console.log(err)
-      //     }
-      //   }
-      // )
-      console.log(`url ${url} done`)
+      console.log(`· Audit collected from ${url}`)
+    } else {
+      console.log(`· Audit failed for ${url}`)
     }
   }
 
-  trace({
+  await trace({
     build,
     runs
   })
 
-  console.log(`all done`)
+  console.log(`> Audit traces sent to calsott.com`)
 }
-
-start()
