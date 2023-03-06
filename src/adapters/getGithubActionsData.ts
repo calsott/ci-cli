@@ -18,7 +18,7 @@ export async function getGithubActionsData(): Promise<Build> {
   const commitHash = githubEvent?.head_commit?.id
   const commitMessage = githubEvent?.head_commit?.message
   const committedAt = githubEvent?.head_commit?.timestamp
-  const externalBuildUrl = `${process.env.GITHUB_SERVER_URL}${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`
+  const externalBuildUrl = `${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`
   const name = process.env.GITHUB_WORKFLOW
   const runAt = new Date().toISOString()
 
