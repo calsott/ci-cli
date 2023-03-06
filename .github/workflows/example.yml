@@ -23,7 +23,7 @@ jobs:
     - name: "Prepare"
       run: npm run prepare
 
-    - name: "Run calsot sdk"
-      run: |
-        node bin/cli.js --config ./.calsot.json
+    # - name: "Run calsot sdk"
+    #   run: |
+    #     node bin/cli.js --config ./.calsot.json --token
 

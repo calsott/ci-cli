@@ -13,3 +13,13 @@ interface Build {
   name: string
   runAt: string
 }
+
+type StartParams = {
+  rcFilePath?: string
+  token: string
+}
+
+type TraceParams = {
+  data: any
+  token: string
+}

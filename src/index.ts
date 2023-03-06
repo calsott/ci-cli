@@ -30,7 +30,10 @@ async function run({url}) {
   }
 }
 
-export async function start({rcFilePath = defaultRcFilePath} = {}) {
+export async function start({
+  rcFilePath = defaultRcFilePath,
+  token
+}: StartParams) {
   console.log('> Starting audit...')
   const config = loadRcFile(rcFilePath)
   const build = await getBuild()
@@ -41,6 +44,7 @@ export async function start({rcFilePath = defaultRcFilePath} = {}) {
   }
 
   console.log(`> Build data collected from ${build.name}`)
+  console.log(build)
   console.log(`> Auditing ${config.urls.length} urls...`)
 
   const runs = []
@@ -62,8 +66,11 @@ export async function start({rcFilePath = defaultRcFilePath} = {}) {
   }
 
   await trace({
-    build,
-    runs
+    data: {
+      build,
+      runs
+    },
+    token
   })
 
   console.log(`> Audit traces sent to calsott.com`)
