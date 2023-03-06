@@ -25,5 +25,5 @@ jobs:
 
     - name: "Run calsot sdk"
       run: |
-        node bin/cli.js --config ./calsot.json
+        node bin/cli.js --config ./.calsot.json
 
