@@ -10,7 +10,7 @@ const testFiles = {
 
 describe('loadRcFile', () => {
   Object.keys(testFiles).forEach(fileType => {
-    it(`load rc content from ${fileType} file`, () => {
+    it(`should load rc content from ${fileType} file`, () => {
       const content = loadRcFile(testFiles[fileType])
 
       expect(content.urls).toEqual(['https://twinandchic.com'])
