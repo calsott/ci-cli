@@ -43,7 +43,9 @@ export async function start({
     return
   }
 
-  console.log(`> Build data collected from ${build.name}`)
+  console.log(
+    `> Data collected from CI triggered by commit: ${build.commitHash}`
+  )
   console.log(build)
   console.log(`> Auditing ${config.urls.length} urls...`)
 
