@@ -4,10 +4,10 @@ import {loadRcFile} from './loadRcFile'
 
 describe('loadRcFile', () => {
   it('load rc file content', () => {
-    const content = loadRcFile('./.calsot.json')
+    const content = loadRcFile('./mocks/.rcFile.json')
 
     expect(content).toEqual({
-      urls: ['http://localhost:8080', 'http://localhost:8080/list']
+      urls: ['https://twinandchic.com']
     })
   })
 })

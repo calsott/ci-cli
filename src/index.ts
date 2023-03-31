@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import {getBuild} from './getBuild'
 import {trace} from './trace'
-import {loadRcFile} from './utils/loadRcFile'
+import {loadRcFile} from './lib/config/loadRcFile'
 
 const execa = require('execa')
 
