@@ -8,6 +8,6 @@ async function getDataFromCI(): Promise<Build | null> {
   return null
 }
 
-export async function getBuild(): Promise<Build | null> {
+export async function getBuildData(): Promise<Build | null> {
   return getDataFromCI()
 }

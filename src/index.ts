@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import {getBuild} from './getBuild'
+import {getBuildData} from './getBuildData'
 import {trace} from './trace'
 import {loadRcFile} from './lib/config/loadRcFile'
 
@@ -36,7 +36,7 @@ export async function start({
 }: StartParams) {
   console.log('> Starting audit...')
   const config = loadRcFile(rcFilePath)
-  const build = await getBuild()
+  const build = await getBuildData()
 
   if (!build) {
     console.log('not in CI')
@@ -51,7 +51,7 @@ export async function start({
 
   const runs = []
 
-  for (let url of config.urls) {
+  for (const url of config.urls) {
     const result = await run({url})
 
     if (result) {

@@ -1,18 +1,25 @@
 {
-  "extends": "./node_modules/@maons/tsconfig/base.json",
   "compilerOptions": {
-    "outDir": "dist",
+    "composite": false,
+    "declaration": true,
+    "declarationMap": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "inlineSources": false,
+    "isolatedModules": true,
     "lib": ["ES2015", "dom"],
     "module": "CommonJS",
-    "target": "es6",
+    "moduleResolution": "node",
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "outDir": "dist",
+    "preserveWatchOutput": true,
+    "skipLibCheck": true,
     "sourceMap": true,
+    "strict": false,
+    "target": "es6",
     "types": ["vitest/globals"]
   },
   "include": ["./src"],
-  "exclude": [
-    "dist",
-    "build",
-    "node_modules",
-    "src/**/*.test.ts"
-  ]
+  "exclude": ["dist", "build", "node_modules", "src/**/*.test.ts"]
 }
