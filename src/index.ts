@@ -1,39 +1,15 @@
 /* eslint-disable no-console */
 import {getBuildData} from './getBuildData'
-import {trace} from './trace'
 import {loadRcFile} from './lib/config/loadRcFile'
-
-const execa = require('execa')
+import {runLighhouse} from './runLighhouse'
 
 const defaultRcFilePath = './.calsot.json'
 
-async function run({url}) {
-  try {
-    const {stdout} = await execa('npx', [
-      'lighthouse',
-      url,
-      '--output',
-      'json',
-      '--output-path',
-      // `${new Date().getTime()}.json`,
-      'stdout',
-      '--skip-audits',
-      'screenshot-thumbnails,final-screenshot',
-      '--disable-full-page-screenshot',
-      '--chrome-flags',
-      '"--no-sandbox --headless --disable-gpu"'
-    ])
-    return stdout
-  } catch (error) {
-    // TODO: handle error
-    return null
-  }
+type StartParams = {
+  rcFilePath?: string
 }
 
-export async function start({
-  rcFilePath = defaultRcFilePath,
-  token
-}: StartParams) {
+export async function start({rcFilePath = defaultRcFilePath}: StartParams) {
   console.log('> Starting audit...')
   const config = loadRcFile(rcFilePath)
   const build = await getBuildData()
@@ -52,28 +28,16 @@ export async function start({
   const runs = []
 
   for (const url of config.urls) {
-    const result = await run({url})
+    const result = await runLighhouse({url})
 
     if (result) {
-      runs.push({
-        url,
-        representative: true,
-        lhr: result
-      })
+      runs.push(result)
 
       console.log(`· Audit collected from ${url}`)
     } else {
       console.log(`· Audit failed for ${url}`)
     }
   }
-
-  await trace({
-    data: {
-      build,
-      runs
-    },
-    token
-  })
 
   console.log(`> Audit traces sent to calsott.com`)
 }

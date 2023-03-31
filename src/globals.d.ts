@@ -5,13 +5,3 @@ interface Build {
   branch: string
   commitHash: string
 }
-
-type StartParams = {
-  rcFilePath?: string
-  token: string
-}
-
-type TraceParams = {
-  data: any
-  token: string
-}

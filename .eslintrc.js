@@ -19,6 +19,8 @@ module.exports = {
   rules: {
     // plugins
     'prettier/prettier': [RULES.WARNING, prettierOptions],
+    'simple-import-sort/imports': RULES.ERROR,
+    'simple-import-sort/exports': RULES.ERROR,
     // defaults
     'no-undef': RULES.OFF,
     // typescript
