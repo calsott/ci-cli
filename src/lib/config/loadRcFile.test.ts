@@ -2,12 +2,20 @@ import {describe} from 'vitest'
 
 import {loadRcFile} from './loadRcFile'
 
-describe('loadRcFile', () => {
-  it('load rc file content', () => {
-    const content = loadRcFile('./mocks/.rcFile.json')
+const testFiles = {
+  json: './mocks/configFiles/.rcFile.json',
+  js: './mocks/configFiles/.rcFile.js',
+  cjs: './mocks/configFiles/.rcFile.cjs'
+}
 
-    expect(content).toEqual({
-      urls: ['https://twinandchic.com']
+describe('loadRcFile', () => {
+  Object.keys(testFiles).forEach(fileType => {
+    it(`'load rc content from ${fileType} file'`, () => {
+      const content = loadRcFile(testFiles[fileType])
+
+      expect(content).toEqual({
+        urls: ['https://twinandchic.com']
+      })
     })
   })
 })
