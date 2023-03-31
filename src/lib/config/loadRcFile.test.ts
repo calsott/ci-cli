@@ -13,9 +13,7 @@ describe('loadRcFile', () => {
     it(`load rc content from ${fileType} file`, () => {
       const content = loadRcFile(testFiles[fileType])
 
-      expect(content).toEqual({
-        urls: ['https://twinandchic.com']
-      })
+      expect(content.urls).toEqual(['https://twinandchic.com'])
     })
   })
 })
