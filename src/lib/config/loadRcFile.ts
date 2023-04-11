@@ -1,17 +1,16 @@
 'use strict'
 
+import {resolve} from 'path'
 const fs = require('fs')
-const path = require('path')
 
 const JS_FILE_EXTENSION_REGEX = /\.(cjs|js)$/i
 
 /**
  * Parse file content to JSON.
- * @param {string} pathToRcFile
- * @param {string} contents
  * @return {LHCI.LighthouseRc}
  */
-function parseFileContentToJSON(rcFilePath, rcFileContent) {
+
+function parseFileContentToJSON(rcFilePath: string, rcFileContent: string) {
   // Check if file path ends in .js
   if (JS_FILE_EXTENSION_REGEX.test(rcFilePath)) {
     return require(rcFilePath)
@@ -21,9 +20,9 @@ function parseFileContentToJSON(rcFilePath, rcFileContent) {
   return JSON.parse(rcFileContent)
 }
 
-export function loadRcFile(pathToRcFile) {
-  const rcFilePath = path.resolve(process.cwd(), pathToRcFile)
-  const rcFileContent = fs.readFileSync(rcFilePath, 'utf8')
+export function loadRcFile(pathToRcFile: string) {
+  const rcFilePath: string = resolve(process.cwd(), pathToRcFile)
+  const rcFileContent: string = fs.readFileSync(rcFilePath, 'utf8')
 
   return parseFileContentToJSON(rcFilePath, rcFileContent)
 }
