@@ -2,7 +2,7 @@
 
 [![Node.js version][nodejs-badge]][nodejs]
 [![npm][npm-badge]][npm]
-<!-- ![tests][tests-ci-badge] -->
+![tests][tests-ci-badge]
 
 <br />
 <div align="center">
