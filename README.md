@@ -1,3 +1,1 @@
-# calsot-sdk
-
-[ ] use token
+# Continuous integration CLI
