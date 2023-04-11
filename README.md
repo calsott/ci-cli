@@ -3,7 +3,6 @@
 [![Node.js version][nodejs-badge]][nodejs]
 [![npm][npm-badge]][npm]
 <!-- ![tests][tests-ci-badge] -->
-<!-- [![license][license-badge]][license-url] -->
 
 <br />
 <div align="center">
@@ -47,10 +46,7 @@ Licensed under the [MIT license][license].
 [npm-badge]: https://img.shields.io/badge/npm-%3E=v9.0.0-blue
 [npm]: https://docs.npmjs.com/cli/v9
 
-[tests-ci-badge]: https://github.com/rmoralp/maons/actions/workflows/tests.yml/badge.svg?branch=main&style=for-the-badge
-
-[license-badge]: https://img.shields.io/github/license/calsott/ci-cli.svg
-[license-url]: https://github.com/rmoralp/maons/blob/main/LICENSE.md
+[tests-ci-badge]: https://github.com/calsott/ci-cli/actions/workflows/tests.yml/badge.svg?branch=main&style=for-the-badge
 
 <!-- Stuff -->
 [license]: https://github.com/calsott/ci-cli/blob/main/LICENSE.md
