@@ -30,6 +30,10 @@ export async function start({rcFilePath = defaultRcFilePath}: StartParams) {
   for (const url of config.urls) {
     const result = await runLighhouse({url})
 
+    // TODO: map result and get all definition values (metrics)
+
+    // TODO: send metrics to configured adapter/s
+
     if (result) {
       runs.push(result)
 
