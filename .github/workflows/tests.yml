@@ -1,9 +1,8 @@
-name: Example
+name: Tests
 on: [push, pull_request]
 
 jobs:
   tests:
-    name: Example
     runs-on: ubuntu-latest
 
     steps:
