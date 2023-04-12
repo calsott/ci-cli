@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import {getBuildData} from './getBuildData'
 import {loadRcFile} from './lib/config/loadRcFile'
+import {getMetricsFromLhr} from './lib/lhr/getMetricsFromLhr'
 import {runLighhouse} from './runLighhouse'
 
 const defaultRcFilePath = './.calsot.json'
@@ -25,17 +26,20 @@ export async function start({rcFilePath = defaultRcFilePath}: StartParams) {
   console.log(build)
   console.log(`> Auditing ${config.urls.length} urls...`)
 
-  const runs = []
-
   for (const url of config.urls) {
     const result = await runLighhouse({url})
 
-    // TODO: map result and get all definition values (metrics)
-
-    // TODO: send metrics to configured adapter/s
-
     if (result) {
-      runs.push(result)
+      const lhrMetrics = getMetricsFromLhr(result)
+
+      const data = {
+        requestedUrl: result.requestedUrl,
+        url: result.finalUrl,
+        ...lhrMetrics
+      }
+
+      console.log(data)
+      // TODO: send metrics (data) to configured adapter/s
 
       console.log(`· Audit collected from ${url}`)
     } else {
