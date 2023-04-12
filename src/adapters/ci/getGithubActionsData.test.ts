@@ -19,7 +19,7 @@ describe('getGithubActionsData', () => {
     const data = await getGithubActionsData()
 
     expect(data).toEqual({
-      author: 'rafamp89@gmail.com',
+      author: 'jane.doe@gmail.com',
       branch: githubRefName,
       commitHash: 'f2dfa08972bc1cefcfa2ad9ebac1010bc4fb777b'
     })
@@ -30,6 +30,7 @@ describe('getGithubActionsData', () => {
 
     process.env = {
       ...originalEnv,
+      GITHUB_EVENT_PATH: undefined,
       GITHUB_REF_NAME: githubRefName,
       GITHUB_ACTOR: fallbackActor
     }
