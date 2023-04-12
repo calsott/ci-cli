@@ -1,11 +1,9 @@
 import {definitions} from './definitions'
 
 const getTTFBFactory = version => {
-  if (version.major === 5) {
-    return definitions.auditLegacyTimeToFirstByteMedian
-  }
-
-  return definitions.auditServerResponseTimeMedian
+  return version.major === 5
+    ? definitions.auditLegacyTimeToFirstByteMedian
+    : definitions.auditServerResponseTimeMedian
 }
 
 const maybeValue = value => {

@@ -17,19 +17,18 @@ export async function start({rcFilePath = defaultRcFilePath}: StartParams) {
 
   if (!build) {
     console.log('not in CI')
-    return
+    // return
+  } else {
+    console.log(
+      `> Data collected from CI triggered by commit: ${build.commitHash}`
+    )
+    console.log(build)
   }
 
-  console.log(
-    `> Data collected from CI triggered by commit: ${build.commitHash}`
-  )
-  console.log(build)
   console.log(`> Auditing ${config.urls.length} urls...`)
 
   for (const url of config.urls) {
     const result = await runLighhouse({url})
-
-    console.log(result)
 
     if (result) {
       const lhrMetrics = getMetricsFromLhr(result)
@@ -40,7 +39,7 @@ export async function start({rcFilePath = defaultRcFilePath}: StartParams) {
         ...lhrMetrics
       }
 
-      console.log(data)
+      // console.log(JSON.stringify)
       // TODO: send metrics (data) to configured adapter/s
 
       console.log(`· Audit collected from ${url}`)
