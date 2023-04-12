@@ -1,11 +1,12 @@
 function metaLighthouseVersion() {
   return lhrs => {
     const version = lhrs[0].lighthouseVersion || ''
-    const [_, major = '0', minor = '0', patch = '0'] = // eslint-disable-line no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const [_, major = '0', minor = '0', patch = '0'] =
       version.match(/^(\d+)\.(\d+)\.(\d+)/) || []
     const versionAsNumber =
       Number(major) * 100 * 100 + Number(minor) * 100 + Number(patch)
-    return {value: versionAsNumber || 0}
+    return {value: versionAsNumber || 0, major: Number(major)}
   }
 }
 
@@ -67,6 +68,9 @@ function categoryScoreMinOrMax(categoryId: string, type: 'min' | 'max') {
 
 export const definitions = {
   metaLighthouseVersion: metaLighthouseVersion(),
+  auditCumulativeLayoutShiftMedian: auditNumericValueMedian(
+    'cumulative-layout-shift'
+  ),
   auditInteractiveMedian: auditNumericValueMedian('interactive'),
   auditSpeedIndexMedian: auditNumericValueMedian('speed-index'),
   auditFirstContentfulPaintMedian: auditNumericValueMedian(
@@ -77,6 +81,11 @@ export const definitions = {
   ),
   auditTotalBlockingTimeMedian: auditNumericValueMedian('total-blocking-time'),
   auditMaxPotentialFidMedian: auditNumericValueMedian('max-potential-fid'),
+  auditServerResponseTimeMedian: auditNumericValueMedian(
+    'server-response-time'
+  ),
+  auditLegacyTimeToFirstByteMedian:
+    auditNumericValueMedian('time-to-first-byte'),
   categoryPerformanceMedian: categoryScoreMedian('performance'),
   categoryPwaMedian: categoryScoreMedian('pwa'),
   categorySeoMedian: categoryScoreMedian('seo'),
