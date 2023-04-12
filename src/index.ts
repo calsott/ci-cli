@@ -31,7 +31,8 @@ export async function start({rcFilePath = defaultRcFilePath}: StartParams) {
     const result = await runLighhouse({url})
 
     if (result) {
-      const lhrMetrics = getMetricsFromLhr(result)
+      const lhr = JSON.parse(result)
+      const lhrMetrics = getMetricsFromLhr(lhr)
 
       const data = {
         requestedUrl: result.requestedUrl,
