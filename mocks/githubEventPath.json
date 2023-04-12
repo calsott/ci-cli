@@ -5,12 +5,12 @@
   "commits": [
     {
       "author": {
-        "email": "rafamp89@gmail.com",
+        "email": "jane.doe@gmail.com",
         "name": "rafa moral",
         "username": "rmoralp"
       },
       "committer": {
-        "email": "rafamp89@gmail.com",
+        "email": "jane.doe@gmail.com",
         "name": "rafa moral",
         "username": "rmoralp"
       },
@@ -28,12 +28,12 @@
   "forced": false,
   "head_commit": {
     "author": {
-      "email": "rafamp89@gmail.com",
+      "email": "jane.doe@gmail.com",
       "name": "rafa moral",
       "username": "rmoralp"
     },
     "committer": {
-      "email": "rafamp89@gmail.com",
+      "email": "jane.doe@gmail.com",
       "name": "rafa moral",
       "username": "rmoralp"
     },
@@ -44,7 +44,7 @@
     "tree_id": "4e437e7972596289957596709fdd822f74c66d72",
     "url": "https://github.com/rmoralp/calsot-sdk/commit/f2dfa08972bc1cefcfa2ad9ebac1010bc4fb777b"
   },
-  "pusher": {"email": "rafamp89@gmail.com", "name": "rmoralp"},
+  "pusher": {"email": "jane.doe@gmail.com", "name": "rmoralp"},
   "ref": "refs/heads/main",
   "repository": {
     "allow_forking": true,
@@ -106,7 +106,7 @@
     "open_issues_count": 0,
     "owner": {
       "avatar_url": "https://avatars.githubusercontent.com/u/5390428?v=4",
-      "email": "rafamp89@gmail.com",
+      "email": "jane.doe@gmail.com",
       "events_url": "https://api.github.com/users/rmoralp/events{/privacy}",
       "followers_url": "https://api.github.com/users/rmoralp/followers",
       "following_url": "https://api.github.com/users/rmoralp/following{/other_user}",
