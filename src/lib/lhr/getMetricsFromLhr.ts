@@ -10,7 +10,7 @@ const maybeValue = value => {
   return value >= 0 ? value : null
 }
 
-export function getMetricsFromLhr(lhr) {
+export function getMetricsFromLhr(lhr): Metrics {
   const input = [lhr]
   const version = definitions.metaLighthouseVersion(input)
 
@@ -28,14 +28,38 @@ export function getMetricsFromLhr(lhr) {
   const ttfb = getTTFB(input)
 
   return {
-    version: maybeValue(version.value),
-    cls: maybeValue(cls.value),
-    fcp: maybeValue(fcp.value),
-    fid: maybeValue(fid.value),
-    lcp: maybeValue(lcp.value),
-    si: maybeValue(si.value),
-    tbt: maybeValue(tbt.value),
-    ttfb: maybeValue(ttfb.value),
-    tti: maybeValue(tti.value)
+    version,
+    cls: {
+      value: maybeValue(cls.value),
+      numericUnit: null
+    },
+    fcp: {
+      value: maybeValue(fcp.value),
+      numericUnit: 'millisecond'
+    },
+    fid: {
+      value: maybeValue(fid.value),
+      numericUnit: 'millisecond'
+    },
+    lcp: {
+      value: maybeValue(lcp.value),
+      numericUnit: 'millisecond'
+    },
+    si: {
+      value: maybeValue(si.value),
+      numericUnit: 'millisecond'
+    },
+    tbt: {
+      value: maybeValue(tbt.value),
+      numericUnit: 'millisecond'
+    },
+    ttfb: {
+      value: maybeValue(ttfb.value),
+      numericUnit: 'millisecond'
+    },
+    tti: {
+      value: maybeValue(tti.value),
+      numericUnit: 'millisecond'
+    }
   }
 }
