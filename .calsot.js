@@ -10,7 +10,7 @@ module.exports = {
         appKey: process.env.DATADOG_APP_KEY,
         site: "datadoghq.eu",
         host: "twinandchic.com",
-        prefix: "tc"
+        prefix: "tc."
       }
     }
   ]
