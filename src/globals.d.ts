@@ -6,7 +6,7 @@ type ProviderOptions = {
 }
 
 type Provider = {
-  name: 'datadog'
+  name: ProviderNames.Datadog
   options?: ProviderOptions
 }
 

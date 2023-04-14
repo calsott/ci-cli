@@ -3,6 +3,7 @@ import {getBuildData} from './getBuildData'
 import {getMetricsFromLhr} from './lib/lhr/getMetricsFromLhr'
 import {loadRcFile} from './lib/loadRcFile'
 import {runLighhouse} from './runLighhouse'
+import {sendMetrics} from './sendMetrics'
 
 const defaultRcFilePath = './.calsot.js'
 
@@ -34,15 +35,14 @@ export async function start({rcFilePath = defaultRcFilePath}: StartParams) {
       const lhr = JSON.parse(result)
       const lhrMetrics = getMetricsFromLhr(lhr)
 
-      const data = {
+      const metrics = {
         requestedUrl: result.requestedUrl,
         url: result.finalUrl,
         ...lhrMetrics
       }
 
-      // console.log(JSON.stringify)
-      // TODO: send metrics (data) to configured adapter/s
-
+      const result = await sendMetrics(metrics, config)
+      console.log(result)
       console.log(`· Audit collected from ${url}`)
     } else {
       console.log(`· Audit failed for ${url}`)

@@ -1,3 +1,3 @@
-export const datadogProvider = {
-  name: 'datadog'
+export enum ProviderNames {
+  Datadog = 'datadog'
 }
