@@ -16,6 +16,7 @@
     "lint": "eslint --ext ts src",
     "prepare": "rm -rf dist && npm run build",
     "test:ci": "vitest --run",
+    "test:types": "vitest typecheck",
     "test": "vitest"
   },
   "repository": {
