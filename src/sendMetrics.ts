@@ -18,6 +18,7 @@ export async function sendMetrics(metrics: Metrics, config: ConfigFile) {
       await providerFactory[provider](metrics, config)
       providersSent++
     } catch (error) {
+      console.log(error)
       console.log(`Error sending metrics to ${provider}`)
     }
   }
