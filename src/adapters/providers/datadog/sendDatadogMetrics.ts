@@ -9,7 +9,7 @@ import {metricsToDatadogMetricsMapper} from './metricsToDatadogMetricsMapper'
  * DATADOG_APP_KEY=3bec09a06606a6f14fb0e377a5d38cb6395d762a
  */
 
-export async function sendMetrics(metrics: Metrics, config: ConfigFile) {
+export async function sendDatadogMetrics(metrics: Metrics, config: ConfigFile) {
   const options = getProviderOptions(config)
   const logger = new ddMetrics.BufferedMetricsLogger(options)
 

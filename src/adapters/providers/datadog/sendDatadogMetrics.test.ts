@@ -1,7 +1,7 @@
 import mockedDatadogMetrics from 'datadog-metrics'
 
 import {metricsMock} from '../../../../mocks/metrics'
-import {sendMetrics} from './sendMetrics'
+import {sendDatadogMetrics} from './sendDatadogMetrics'
 
 const originalEnv = process.env
 
@@ -22,7 +22,7 @@ describe('datadog > sendMetrics', () => {
     vi.clearAllMocks()
   })
 
-  it('should returns author, branch and commitHash', async () => {
+  it('sends metrics to datadog', async () => {
     process.env = {
       ...originalEnv,
       DATADOG_API_HOST: 'datadoghq.eu',
@@ -45,7 +45,7 @@ describe('datadog > sendMetrics', () => {
     }
 
     const logger = new mockedDatadogMetrics.BufferedMetricsLogger()
-    const data = await sendMetrics(metricsMock, config)
+    const data = await sendDatadogMetrics(metricsMock, config)
 
     expect(logger.gauge).toHaveBeenCalled()
     expect(logger.gauge).toHaveBeenCalledTimes(8)
