@@ -5,6 +5,7 @@ const filterSkippedMetrics = metricKey => {
 }
 
 export function metricsToDatadogMetricsMapper(metrics: Metrics) {
+  console.log(metrics)
   const filteredKeys = Object.keys(metrics).filter(filterSkippedMetrics)
 
   const mapMetric = key => ({
