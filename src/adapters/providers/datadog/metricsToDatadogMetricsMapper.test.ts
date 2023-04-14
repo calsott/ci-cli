@@ -1,7 +1,7 @@
 import {metricsMock} from '../../../../mocks/metrics'
 import {metricsToDatadogMetricsMapper} from './metricsToDatadogMetricsMapper'
 
-describe('metricsToDatadogMetricsMapper', () => {
+describe('datadog > metricsToDatadogMetricsMapper', () => {
   it('should map metrics to Datadog metric format', () => {
     const data = metricsToDatadogMetricsMapper(metricsMock)
 
