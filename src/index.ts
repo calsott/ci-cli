@@ -41,8 +41,8 @@ export async function start({rcFilePath = defaultRcFilePath}: StartParams) {
         ...lhrMetrics
       }
 
-      const result = await sendMetrics(metrics, config)
-      console.log(result)
+      const response = await sendMetrics(metrics, config)
+      console.log(response)
       console.log(`· Audit collected from ${url}`)
     } else {
       console.log(`· Audit failed for ${url}`)
