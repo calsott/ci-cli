@@ -23,6 +23,7 @@ function collectMemoryStats() {
   metricsLogger.gauge('pepe', memUsage.heapTotal)
 }
 
-setInterval(collectMemoryStats, 1000)
+collectMemoryStats()
+metricsLogger.flush()
 
 // metricsLogger.gauge('mygauge', 25)

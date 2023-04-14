@@ -8,22 +8,18 @@ import {metricsToDatadogMetricsMapper} from './metricsToDatadogMetricsMapper'
  * DATADOG_API_KEY
  * DATADOG_APP_KEY
  */
-const defaultOptions = {
-  flushIntervalSeconds: 15
-}
 
 export async function sendDatadogMetrics(metrics: Metrics, config: ConfigFile) {
   const options = getProviderOptions(config)
-  const logger = new ddMetrics.BufferedMetricsLogger({
-    ...defaultOptions,
-    ...options
-  })
+  const logger = new ddMetrics.BufferedMetricsLogger(options)
 
   const datadogMetrics = metricsToDatadogMetricsMapper(metrics)
 
   datadogMetrics.forEach(({key, value}) => {
     logger.gauge(key, value)
   })
+
+  logger.flush()
 
   return Promise.resolve('sent')
 }

@@ -7,9 +7,10 @@ const originalEnv = process.env
 
 vi.mock('datadog-metrics', async () => {
   const gauge = vi.fn()
+  const flush = vi.fn()
 
   function BufferedMetricsLogger() {
-    return {gauge}
+    return {gauge, flush}
   }
 
   return {
@@ -49,6 +50,8 @@ describe('datadog > sendMetrics', () => {
 
     expect(logger.gauge).toHaveBeenCalled()
     expect(logger.gauge).toHaveBeenCalledTimes(8)
+    expect(logger.flush).toHaveBeenCalled()
+    expect(logger.flush).toHaveBeenCalledTimes(1)
     expect(data).toEqual('sent')
   })
 })
