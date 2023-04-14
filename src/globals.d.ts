@@ -1,7 +1,18 @@
 /* eslint-disable no-unused-vars */
 
+type ProviderOptions = {
+  host?: string
+  prefix?: string
+}
+
+type Provider = {
+  name: 'datadog'
+  options?: ProviderOptions
+}
+
 interface ConfigFile {
   urls: string[]
+  providers: Provider[]
 }
 
 interface Build {
