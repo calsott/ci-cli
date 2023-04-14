@@ -1,4 +1,3 @@
-// DD_SITE="datadoghq.eu" DD_API_KEY="e2a58123af4b81369a21e0f361062d8a" node ./examples/ts.js
 /**
  * Submit metrics returns "Payload accepted" response
  */

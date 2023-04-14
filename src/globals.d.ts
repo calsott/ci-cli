@@ -1,8 +1,12 @@
 /* eslint-disable no-unused-vars */
 
 type ProviderOptions = {
+  apiKey?: string
+  appKey?: string
+  defaultTags?: string[]
   host?: string
   prefix?: string
+  site?: string
 }
 
 type Provider = {

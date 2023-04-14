@@ -1,6 +1,6 @@
 const axios = require('axios')
 
-const apiKey = 'e2a58123af4b81369a21e0f361062d8a'
+const apiKey = ''
 const url = 'https://api.datadoghq.eu/api/v2/series'
 
 // The data to send in the POST request
