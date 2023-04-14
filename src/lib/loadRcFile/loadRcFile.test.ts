@@ -1,6 +1,4 @@
-import {describe} from 'vitest'
-
-import {loadRcFile} from './loadRcFile'
+import {loadRcFile} from './index'
 
 const testFiles = {
   json: './mocks/configFiles/.rcFile.json',

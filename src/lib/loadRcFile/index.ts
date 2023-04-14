@@ -1,5 +1,3 @@
-'use strict'
-
 import {resolve} from 'path'
 const fs = require('fs')
 
@@ -20,7 +18,7 @@ function parseFileContentToJSON(rcFilePath: string, rcFileContent: string) {
   return JSON.parse(rcFileContent)
 }
 
-export function loadRcFile(pathToRcFile: string) {
+export function loadRcFile(pathToRcFile: string): ConfigFile {
   const rcFilePath: string = resolve(process.cwd(), pathToRcFile)
   const rcFileContent: string = fs.readFileSync(rcFilePath, 'utf8')
 

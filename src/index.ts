@@ -1,10 +1,10 @@
 /* eslint-disable no-console */
 import {getBuildData} from './getBuildData'
-import {loadRcFile} from './lib/config/loadRcFile'
 import {getMetricsFromLhr} from './lib/lhr/getMetricsFromLhr'
+import {loadRcFile} from './lib/loadRcFile'
 import {runLighhouse} from './runLighhouse'
 
-const defaultRcFilePath = './.calsot.json'
+const defaultRcFilePath = './.calsot.js'
 
 type StartParams = {
   rcFilePath?: string
