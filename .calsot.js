@@ -4,7 +4,7 @@ module.exports = {
   ],
   providers: [
     {
-      name: "Datadog",
+      name: "datadog",
       options: {
         site: "datadoghq.eu",
         host: "twinandchic.com",
