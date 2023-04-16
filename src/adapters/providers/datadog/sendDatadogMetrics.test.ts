@@ -51,7 +51,6 @@ describe('datadog > sendMetrics', () => {
     }
 
     const logger = new mockedDatadogMetrics.BufferedMetricsLogger()
-    console.log(config.urls[0])
     const data = await sendDatadogMetrics({
       metrics: metricsMock,
       config,
