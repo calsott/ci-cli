@@ -5,7 +5,12 @@ const providerFactory = {
   [ProviderNames.Datadog]: sendDatadogMetrics
 }
 
-export async function sendMetrics(metrics: Metrics, config: ConfigFile) {
+type SendMetricsType = {
+  metrics: Metrics
+  config: ConfigFile
+}
+
+export async function sendMetrics({metrics, config}: SendMetricsType) {
   const providers = config.providers.map(provider => provider.name)
   let providersSent = 0
 

@@ -33,9 +33,9 @@ export async function start({rcFilePath = defaultRcFilePath}: StartParams) {
 
     if (result) {
       const lhr = JSON.parse(result)
-      const lhrMetrics = getMetricsFromLhr(lhr)
+      const metrics = getMetricsFromLhr(lhr)
 
-      const response = await sendMetrics(lhrMetrics, config)
+      const response = await sendMetrics({config, metrics})
       console.log(response)
       console.log(`· Audit collected from ${url}`)
     } else {

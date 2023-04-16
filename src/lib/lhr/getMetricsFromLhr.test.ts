@@ -7,10 +7,6 @@ describe('getMetricsFromLhr', () => {
   it('should extract metrics for latest lhr version', () => {
     const result = getMetricsFromLhr(baselhr1001)
 
-    expect(result.version).toEqual({
-      major: 10,
-      value: 100001
-    })
     expect(result.tti.value).toBeCloseTo(7516.99)
     expect(result.tti.numericUnit).toEqual('millisecond')
     expect(result.cls.value).toBeCloseTo(0.02)
@@ -32,10 +28,6 @@ describe('getMetricsFromLhr', () => {
   it('should extract metrics for lhr v6 and higher', () => {
     const result = getMetricsFromLhr(baseLhr6)
 
-    expect(result.version).toEqual({
-      major: 6,
-      value: 60000
-    })
     expect(result.tti.value).toBeCloseTo(20253.43)
     expect(result.tti.numericUnit).toEqual('millisecond')
     expect(result.cls.value).toBeCloseTo(0.13)
@@ -57,10 +49,6 @@ describe('getMetricsFromLhr', () => {
   it('should extract metrics for lhr v5 (legacy)', () => {
     const result = getMetricsFromLhr(baseLhr5)
 
-    expect(result.version).toEqual({
-      major: 5,
-      value: 50600
-    })
     expect(result.tti.value).toBeCloseTo(43223.58)
     expect(result.tti.numericUnit).toEqual('millisecond')
     expect(result.cls.value).toBeCloseTo(null) // above v5

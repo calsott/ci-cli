@@ -28,7 +28,7 @@ describe('sendMetrics', () => {
       ]
     }
 
-    const response = await sendMetrics(metricsMock, config)
+    const response = await sendMetrics({metrics: metricsMock, config})
 
     expect(response).toEqual('Metrics sent to 1 providers')
     expect(sendDatadogMetrics).toHaveBeenCalled()
@@ -40,7 +40,7 @@ describe('sendMetrics', () => {
       providers: []
     }
 
-    const response = await sendMetrics(metricsMock, config)
+    const response = await sendMetrics({metrics: metricsMock, config})
 
     expect(response).toEqual('No providers found')
   })

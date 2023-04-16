@@ -28,7 +28,6 @@ export function getMetricsFromLhr(lhr): Metrics {
   const ttfb = getTTFB(input)
 
   return {
-    version,
     cls: {
       value: maybeValue(cls.value),
       numericUnit: null
