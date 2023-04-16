@@ -2,7 +2,7 @@ module.exports = {
   urls: [
     {
       href: "https://twinandchic.com",
-      name: "home" // in snake_case
+      tags: ["home"]
     }
   ],
   providers: [

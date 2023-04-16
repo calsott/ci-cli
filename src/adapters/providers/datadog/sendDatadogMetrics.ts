@@ -19,10 +19,11 @@ export async function sendDatadogMetrics({
 
   const datadogMetrics = metricsToDatadogMetricsMapper(metrics)
 
-  const urlPrefix = url?.name ? `${url.name}.` : ''
+  const tags = url.tags
 
   datadogMetrics.forEach(({key, value}) => {
-    logger.gauge(`${urlPrefix}${key}`, value)
+    const logArguments = [key, value, tags].filter(Boolean)
+    logger.gauge.apply(null, logArguments)
   })
 
   logger.flush()

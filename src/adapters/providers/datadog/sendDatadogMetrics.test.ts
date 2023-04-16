@@ -35,7 +35,7 @@ describe('datadog > sendMetrics', () => {
       urls: [
         {
           href: 'https://twinandchic.com',
-          name: 'home'
+          tags: ['home']
         }
       ],
       providers: [
@@ -51,6 +51,7 @@ describe('datadog > sendMetrics', () => {
     }
 
     const logger = new mockedDatadogMetrics.BufferedMetricsLogger()
+    console.log(config.urls[0])
     const data = await sendDatadogMetrics({
       metrics: metricsMock,
       config,
@@ -58,14 +59,14 @@ describe('datadog > sendMetrics', () => {
     })
 
     expect(logger.gauge.calls).toEqual([
-      ['home.cls', 0.01929044736873687],
-      ['home.fcp', 4533.927],
-      ['home.fid', 150],
-      ['home.lcp', 5040.4929999999995],
-      ['home.si', 13573.686253283706],
-      ['home.tbt', 50],
-      ['home.ttfb', 384.567],
-      ['home.tti', 7516.991]
+      ['cls', 0.01929044736873687, config.urls[0].tags],
+      ['fcp', 4533.927, config.urls[0].tags],
+      ['fid', 150, config.urls[0].tags],
+      ['lcp', 5040.4929999999995, config.urls[0].tags],
+      ['si', 13573.686253283706, config.urls[0].tags],
+      ['tbt', 50, config.urls[0].tags],
+      ['ttfb', 384.567, config.urls[0].tags],
+      ['tti', 7516.991, config.urls[0].tags]
     ])
     expect(logger.gauge).toHaveBeenCalled()
     expect(logger.gauge).toHaveBeenCalledTimes(8)

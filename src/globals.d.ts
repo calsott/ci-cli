@@ -16,7 +16,7 @@ type Provider = {
 
 type PageUrl = {
   href: string
-  name: string
+  tags: string[]
 }
 
 interface ConfigFile {
