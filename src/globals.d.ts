@@ -36,10 +36,6 @@ interface Build {
   commitHash?: string
 }
 
-type LHVersion = {
-  value: number
-  major: number
-}
 type ClsMetric = {
   numericUnit: null
   value: number
@@ -74,7 +70,6 @@ type TtiMetric = {
 }
 
 interface Metrics {
-  version: LHVersion
   cls: ClsMetric
   fcp: FcpMetric
   fid: FidMetric
