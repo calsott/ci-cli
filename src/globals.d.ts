@@ -30,7 +30,7 @@ type LHVersion = {
   major: number
 }
 type ClsMetric = {
-  numericUnit: 'millisecond' | null
+  numericUnit: null
   value: number
 }
 type FcpMetric = {
