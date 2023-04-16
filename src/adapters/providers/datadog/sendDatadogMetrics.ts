@@ -9,14 +9,20 @@ import {metricsToDatadogMetricsMapper} from './metricsToDatadogMetricsMapper'
  * DATADOG_APP_KEY
  */
 
-export async function sendDatadogMetrics(metrics: Metrics, config: ConfigFile) {
+export async function sendDatadogMetrics({
+  metrics,
+  config,
+  url
+}: SendMetricsParams) {
   const options = getProviderOptions(config)
   const logger = new ddMetrics.BufferedMetricsLogger(options)
 
   const datadogMetrics = metricsToDatadogMetricsMapper(metrics)
 
+  const urlPrefix = url?.name ? `${url.name}.` : ''
+
   datadogMetrics.forEach(({key, value}) => {
-    logger.gauge(key, value)
+    logger.gauge(`${urlPrefix}${key}`, value)
   })
 
   logger.flush()

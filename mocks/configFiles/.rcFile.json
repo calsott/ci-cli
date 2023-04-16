@@ -1,5 +1,8 @@
 {
   "urls": [
-    "https://twinandchic.com"
+    {
+      "href": "https://twinandchic.com",
+      "name": "home"
+    }
   ]
 }

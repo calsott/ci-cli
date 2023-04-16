@@ -1,6 +1,9 @@
 module.exports = {
   urls: [
-    "https://twinandchic.com"
+    {
+      href: "https://twinandchic.com",
+      name: "home" // in snake_case
+    }
   ],
   providers: [
     {

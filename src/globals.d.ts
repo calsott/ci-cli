@@ -14,9 +14,20 @@ type Provider = {
   options?: ProviderOptions
 }
 
+type PageUrl = {
+  href: string
+  name: string
+}
+
 interface ConfigFile {
-  urls: string[]
+  urls: PageUrl[]
   providers: Provider[]
+}
+
+type SendMetricsParams = {
+  metrics: Metrics
+  config: ConfigFile
+  url: PageUrl
 }
 
 interface Build {

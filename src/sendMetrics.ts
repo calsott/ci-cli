@@ -5,12 +5,7 @@ const providerFactory = {
   [ProviderNames.Datadog]: sendDatadogMetrics
 }
 
-type SendMetricsType = {
-  metrics: Metrics
-  config: ConfigFile
-}
-
-export async function sendMetrics({metrics, config}: SendMetricsType) {
+export async function sendMetrics({metrics, config, url}: SendMetricsParams) {
   const providers = config.providers.map(provider => provider.name)
   let providersSent = 0
 
@@ -20,7 +15,7 @@ export async function sendMetrics({metrics, config}: SendMetricsType) {
 
   for (const provider of providers) {
     try {
-      await providerFactory[provider](metrics, config)
+      await providerFactory[provider]({metrics, config, url})
       providersSent++
     } catch (error) {
       console.log(error)

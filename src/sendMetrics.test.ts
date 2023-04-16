@@ -15,7 +15,12 @@ describe('sendMetrics', () => {
 
   it('sends metrics to a provider', async () => {
     const config = {
-      urls: ['https://twinandchic.com'],
+      urls: [
+        {
+          href: 'https://twinandchic.com',
+          name: 'home'
+        }
+      ],
       providers: [
         {
           name: 'datadog',
@@ -28,7 +33,11 @@ describe('sendMetrics', () => {
       ]
     }
 
-    const response = await sendMetrics({metrics: metricsMock, config})
+    const response = await sendMetrics({
+      metrics: metricsMock,
+      config,
+      url: config.urls[0]
+    })
 
     expect(response).toEqual('Metrics sent to 1 providers')
     expect(sendDatadogMetrics).toHaveBeenCalled()
@@ -36,11 +45,20 @@ describe('sendMetrics', () => {
 
   it('does not send metrics if there is not a provider', async () => {
     const config = {
-      urls: ['https://twinandchic.com'],
+      urls: [
+        {
+          href: 'https://twinandchic.com',
+          name: 'home'
+        }
+      ],
       providers: []
     }
 
-    const response = await sendMetrics({metrics: metricsMock, config})
+    const response = await sendMetrics({
+      metrics: metricsMock,
+      config,
+      url: config.urls[0]
+    })
 
     expect(response).toEqual('No providers found')
   })

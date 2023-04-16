@@ -1,7 +1,7 @@
 const execa = require('execa')
 
 type RunLighhouseParams = {
-  url: string
+  url: PageUrl
 }
 
 export async function runLighhouse({url}: RunLighhouseParams) {
