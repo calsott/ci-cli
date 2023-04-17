@@ -14,7 +14,7 @@ describe('loadRcFile', () => {
       expect(content.urls).toEqual([
         {
           href: 'https://twinandchic.com',
-          tags: ['home']
+          tags: ['page:home']
         }
       ])
     })

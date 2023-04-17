@@ -35,7 +35,7 @@ describe('datadog > sendMetrics', () => {
       urls: [
         {
           href: 'https://twinandchic.com',
-          tags: ['home']
+          tags: ['page:home']
         }
       ],
       providers: [

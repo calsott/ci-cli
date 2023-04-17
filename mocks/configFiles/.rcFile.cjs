@@ -2,7 +2,7 @@ module.exports = {
   urls: [
     {
       href: "https://twinandchic.com",
-      tags: ['home']
+      tags: ['page:home']
     }
   ]
 }

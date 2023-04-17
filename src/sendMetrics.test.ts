@@ -18,7 +18,7 @@ describe('sendMetrics', () => {
       urls: [
         {
           href: 'https://twinandchic.com',
-          name: 'home'
+          name: 'page:home'
         }
       ],
       providers: [
@@ -48,7 +48,7 @@ describe('sendMetrics', () => {
       urls: [
         {
           href: 'https://twinandchic.com',
-          name: 'home'
+          name: 'page:home'
         }
       ],
       providers: []
