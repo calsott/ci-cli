@@ -25,7 +25,6 @@ jobs:
     - name: Install
         run: npm ci
 
-    # https://github.com/marketplace/actions/automated-releases-for-npm-packages
     - name: Publish
       uses: mikeal/merge-release@master
       env:
