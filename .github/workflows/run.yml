@@ -1,29 +1,29 @@
-name: Pre run
+name: Run
 on: [push]
 env:
   DATADOG_API_KEY: ${{ secrets.DATADOG_API_KEY }}
   DATADOG_APP_KEY: ${{ secrets.DATADOG_APP_KEY }}
+
 jobs:
   tests:
     runs-on: ubuntu-latest
-
     steps:
-    - name: "Checkout"
+    - name: Checkout
       uses: actions/checkout@v3
       with:
         fetch-depth: 0
 
-    - name: "Use Node 18"
+    - name: Setup Node
       uses: actions/setup-node@v3
       with:
         node-version: 18
 
-    - name: "Install"
+    - name: Install
       run: npm ci
 
-    - name: "Prepare"
+    - name: Compile
       run: npm run prepare
 
-    - name: "Run calsot sdk"
+    - name: Run CLI
       run: |
         node bin/cli.js
