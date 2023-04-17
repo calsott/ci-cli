@@ -29,6 +29,12 @@
   </ol>
 </details>
 
+## Installation
+
+```bash
+npm install calsott-cli --save-dev
+```
+
 ## Roadmap:
 
 Check the [project board][project-board] to see what's coming next.

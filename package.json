@@ -1,11 +1,11 @@
 {
-  "name": "calsott-ci",
+  "name": "calsott-cli",
   "version": "0.0.7",
   "description": "",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "bin": {
-    "calsot-ci": "./bin/cli.js"
+    "calsott": "./bin/cli.js"
   },
   "scripts": {
     "build": "tsc",
