@@ -25,6 +25,12 @@ jobs:
     - name: Install
       run: npm ci
 
+    - name: Github Identity
+      run: |
+        git config user.name "${{ github.actor }}"
+        git config user.email "${{ github.actor }}@users.noreply.github.com"
+        git remote set-url origin https://${{github.actor}}:${GH_TOKEN}@github.com/$GITHUB_REPOSITORY
+
     # https://github.com/marketplace/actions/automated-releases-for-npm-packages
     - name: Publish
       uses: mikeal/merge-release@master
