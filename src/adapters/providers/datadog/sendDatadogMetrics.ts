@@ -2,12 +2,6 @@ import ddMetrics from 'datadog-metrics'
 
 import {getProviderOptions} from './getProviderOptions'
 import {metricsToDatadogMetricsMapper} from './metricsToDatadogMetricsMapper'
-/**
- * Required environment variables:
- * DATADOG_API_HOST
- * DATADOG_API_KEY
- * DATADOG_APP_KEY
- */
 
 export async function sendDatadogMetrics({
   metrics,
