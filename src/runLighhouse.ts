@@ -8,7 +8,7 @@ export async function runLighhouse({url}: RunLighhouseParams) {
   try {
     const {stdout} = await execa('npx', [
       'lighthouse',
-      url,
+      url.href,
       '--output',
       'json',
       '--output-path',
@@ -22,7 +22,7 @@ export async function runLighhouse({url}: RunLighhouseParams) {
     ])
     return stdout
   } catch (error) {
-    // TODO: handle error
+    console.log(error)
     return null
   }
 }
