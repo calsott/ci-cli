@@ -1,5 +1,5 @@
 {
-  "name": "calsot-ci",
+  "name": "calsott-ci",
   "version": "0.0.7",
   "description": "",
   "main": "./dist/index.js",
@@ -12,22 +12,23 @@
     "check": "tsc --noEmit",
     "deps:ci": "npm ci",
     "deps:clean": "rm -rf ./node_modules && rm -f ./package-lock.json",
-    "deps": "npm run deps:clean && npm install --legacy-peer-deps --no-audit --no-fund",
+    "deps": "npm run deps:clean && npm install --no-audit --no-fund",
     "lint": "eslint --ext ts src",
     "prepare": "rm -rf dist && npm run build",
     "test:ci": "vitest --run",
+    "test:types": "vitest typecheck",
     "test": "vitest"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rmoralp/calsot-sdk.git"
+    "url": "git+https://github.com/calsott/ci-cli.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/rmoralp/calsot-sdk/issues"
+    "url": "https://github.com/calsott/ci-cli//issues"
   },
-  "homepage": "https://github.com/rmoralp/calsot-sdk#readme",
+  "homepage": "https://github.com/calsott/ci-cli/#readme",
   "dependencies": {
     "commander": "10.0.0",
     "datadog-metrics": "0.11.0",

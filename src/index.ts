@@ -1,10 +1,11 @@
 /* eslint-disable no-console */
 import {getBuildData} from './getBuildData'
-import {loadRcFile} from './lib/config/loadRcFile'
 import {getMetricsFromLhr} from './lib/lhr/getMetricsFromLhr'
+import {loadRcFile} from './lib/loadRcFile'
 import {runLighhouse} from './runLighhouse'
+import {sendMetrics} from './sendMetrics'
 
-const defaultRcFilePath = './.calsot.json'
+const defaultRcFilePath = './.calsot.js'
 
 type StartParams = {
   rcFilePath?: string
@@ -32,17 +33,10 @@ export async function start({rcFilePath = defaultRcFilePath}: StartParams) {
 
     if (result) {
       const lhr = JSON.parse(result)
-      const lhrMetrics = getMetricsFromLhr(lhr)
+      const metrics = getMetricsFromLhr(lhr)
 
-      const data = {
-        requestedUrl: result.requestedUrl,
-        url: result.finalUrl,
-        ...lhrMetrics
-      }
-
-      // console.log(JSON.stringify)
-      // TODO: send metrics (data) to configured adapter/s
-
+      const response = await sendMetrics({config, metrics, url})
+      console.log(response)
       console.log(`· Audit collected from ${url}`)
     } else {
       console.log(`· Audit failed for ${url}`)

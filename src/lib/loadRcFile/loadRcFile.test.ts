@@ -1,6 +1,4 @@
-import {describe} from 'vitest'
-
-import {loadRcFile} from './loadRcFile'
+import {loadRcFile} from './index'
 
 const testFiles = {
   json: './mocks/configFiles/.rcFile.json',
@@ -13,7 +11,12 @@ describe('loadRcFile', () => {
     it(`should load rc content from ${fileType} file`, () => {
       const content = loadRcFile(testFiles[fileType])
 
-      expect(content.urls).toEqual(['https://twinandchic.com'])
+      expect(content.urls).toEqual([
+        {
+          href: 'https://twinandchic.com',
+          tags: ['home']
+        }
+      ])
     })
   })
 })

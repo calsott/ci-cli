@@ -1,3 +1,8 @@
 module.exports = {
-  urls: ['https://twinandchic.com']
+  urls: [
+    {
+      href: "https://twinandchic.com",
+      tags: ['home']
+    }
+  ]
 }
