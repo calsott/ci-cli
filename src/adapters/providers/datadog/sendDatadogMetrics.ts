@@ -13,11 +13,10 @@ export async function sendDatadogMetrics({
 
   const datadogMetrics = metricsToDatadogMetricsMapper(metrics)
 
-  const tags = url.tags
+  const tags = url.tags || []
 
   datadogMetrics.forEach(({key, value}) => {
-    const logArguments = [key, value, tags].filter(Boolean)
-    logger.gauge.apply(null, logArguments)
+    logger.gauge(key, value, tags)
   })
 
   logger.flush()
