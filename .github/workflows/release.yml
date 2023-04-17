@@ -23,8 +23,9 @@ jobs:
         node-version: 18
 
     - name: Install
-        run: npm ci
+      run: npm ci
 
+    # https://github.com/marketplace/actions/automated-releases-for-npm-packages
     - name: Publish
       uses: mikeal/merge-release@master
       env:
