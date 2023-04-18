@@ -38,5 +38,12 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
+    - name: Get version
+      run: |
+        echo "version=$(git describe --tags `git rev-list --tags --max-count=1`)" >> $GITHUB_ENV
+
     - name: Commit
-      run: git status
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: "release: ${{ env.version }} [skip ci]"
+        branch: main
