@@ -1,6 +1,5 @@
-function showError(msg, foreignProgram) {
-  console.error(colors.red(`✖ Error: ${msg}\n`))
-  foreignProgram && foreignProgram.outputHelp(txt => txt)
+function showError(msg) {
+  console.error(`✖ Error: ${msg}\n`)
   process.exit(1)
 }
 
