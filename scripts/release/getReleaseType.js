@@ -1,77 +1,80 @@
 #!/usr/bin/env node
 const fs = require('fs')
-const path = require('path')
 const bent = require('bent')
 const git = require('simple-git')()
 const {promisify} = require('util')
+const {showError} = require('../utils/showError')
+const {getPackageJson} = require('../utils/getPackageJson')
 
-const getlog = promisify(git.log.bind(git))
-
-// const RELEASE_CODES = {
-//   0: 'clean',
-//   1: 'path',
-//   2: 'minor',
-//   3: 'major'
-// }
-
-const getLastPublishedPackageJson = bent(
-  'json',
-  process.env.NPM_REGISTRY_URL || 'https://registry.npmjs.org/'
-)
-
+const releaseType = {
+  major: 'major',
+  minor: 'minor',
+  patch: 'patch'
+}
+const cwd = process.cwd()
 const githubEvent = JSON.parse(
   fs.readFileSync(process.env.GITHUB_EVENT_PATH).toString()
 )
 
-const deployDir = path.join(process.cwd(), process.env.DEPLOY_DIR || './')
-const srcPackageDir = path.join(
-  process.cwd(),
-  process.env.SRC_PACKAGE_DIR || './'
-)
+const getLastPublishedPackageJson = async () => {
+  const getFromRegistry = bent(
+    'json',
+    process.env.NPM_REGISTRY_URL || 'https://registry.npmjs.org/'
+  )
 
-console.log('            using deploy directory : ' + deployDir)
-console.log('using src directory (package.json) : ' + srcPackageDir)
-
-let pkg = require(path.join(deployDir, 'package.json'))
-
-const getReleaseType = async () => {
-  if (!process.env.NPM_AUTH_TOKEN)
-    throw new Error('Merge-release requires NPM_AUTH_TOKEN')
-
-  let latest
   try {
-    latest = await getLastPublishedPackageJson(pkg.name + '/latest')
-  } catch (e) {
-    // unpublished
-  }
+    const {name} = getPackageJson(cwd, true)
+    const latestPublishedPackageJson = await getFromRegistry(`${name}/latest`)
 
+    return latestPublishedPackageJson
+  } catch (e) {
+    return null
+  }
+}
+
+const getCommitMessages = async () => {
+  const getLog = promisify(git.log.bind(git))
+
+  let latestPublishedPackageJson = await getLastPublishedPackageJson()
   let messages
 
-  if (latest) {
-    if (latest.gitHead === process.env.GITHUB_SHA)
+  if (latestPublishedPackageJson) {
+    if (latestPublishedPackageJson.gitHead === process.env.GITHUB_SHA) {
       return console.log('SHA matches latest release, skipping.')
-    if (latest.gitHead) {
+    }
+
+    if (latestPublishedPackageJson.gitHead) {
       try {
-        let logs = await getlog({
-          from: latest.gitHead,
+        let logs = await getLog({
+          from: latestPublishedPackageJson.gitHead,
           to: process.env.GITHUB_SHA
         })
         messages = logs.all.map(r => r.message + '\n' + r.body)
       } catch (e) {
-        latest = null
+        latestPublishedPackageJson = null
       }
       // g.log({from: 'f0002b6c9710f818b9385aafeb1bde994fe3b370', to: '53a92ca2d1ea3c55977f44d93e48e31e37d0bc69'}, (err, l) => console.log(l.all.map(r => r.message + '\n' + r.body)))
     } else {
-      latest = null
+      latestPublishedPackageJson = null
     }
   }
-  if (!latest) {
+
+  if (!latestPublishedPackageJson) {
     messages = (githubEvent.commits || []).map(
       commit => commit.message + '\n' + commit.body
     )
   }
 
-  let version = 'patch'
+  return messages
+}
+
+const getReleaseType = async () => {
+  if (!process.env.NPM_AUTH_TOKEN) {
+    return showError('Merge-release requires NPM_AUTH_TOKEN')
+  }
+
+  const messages = await getCommitMessages()
+
   if (
     messages
       .map(
@@ -79,16 +82,18 @@ const getReleaseType = async () => {
       )
       .includes(true)
   ) {
-    version = 'major'
-  } else if (
+    return releaseType.major
+  }
+
+  if (
     messages
       .map(message => message.toLowerCase().startsWith('feat'))
       .includes(true)
   ) {
-    version = 'minor'
+    return releaseType.minor
   }
 
-  return version
+  return releaseType.patch
 }
 
 module.exports = {

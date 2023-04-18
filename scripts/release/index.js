@@ -46,7 +46,7 @@ const releasePackage = async ({releaseType} = {}) => {
   await exec(`git commit -m "${commitMsg}"`, {cwd})
   await exec(`git commit --amend --no-verify --no-edit`, {cwd})
 
-  await exec(`git tag -a ${version} -m "v${version}"`, {cwd})
+  await exec(`git tag -a v${version} -m "v${version}"`, {cwd})
 
   await exec('git push -f --tags origin HEAD')
 }
