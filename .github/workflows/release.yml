@@ -25,27 +25,10 @@ jobs:
     - name: Install
       run: npm ci
 
-    # - name: Github Identity
-    #   run: |
-    #     git config user.name "${{ github.actor }}"
-    #     git config user.email "${{ github.actor }}@users.noreply.github.com"
-    #     git remote set-url origin https://${{github.actor}}:${GITHUB_TOKEN}@github.com/$GITHUB_REPOSITORY
-
-    # https://github.com/marketplace/actions/automated-releases-for-npm-packages
-    - name: Publish
-      uses: mikeal/merge-release@master
+    - name: Get version
+      run: node ./scripts/release/index.js
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-    - name: Get version
-      run: |
-        echo "version=$(git describe --tags `git rev-list --tags --max-count=1`)" >> $GITHUB_ENV
-        node ./scripts/addVersionToPackage.js
-        git status
-
-    - name: Commit
-      uses: stefanzweifel/git-auto-commit-action@v4
-      with:
-        commit_message: "release: ${{ env.version }} [skip ci]"
-        branch: main
+        GIT_USER: rmoralp
+        GIT_EMAIL: rafamp89@gmail.com
