@@ -23,7 +23,7 @@ const run = async () => {
   )
 
   console.log(`version tag ${versionTag}`)
-  const version = version.slice(1)
+  const version = versionTag.slice(1)
 
   setVersion(version)
 }
