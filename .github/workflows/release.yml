@@ -8,8 +8,8 @@ on:
       - main
 
 jobs:
-  publish:
-    name: Publish
+  release:
+    name: release
     runs-on: ubuntu-latest
     steps:
     - name: "Checkout"
@@ -25,7 +25,7 @@ jobs:
     - name: Install
       run: npm ci
 
-    - name: Get version
+    - name: Release
       run: node ./scripts/release/index.js
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
