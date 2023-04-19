@@ -39,7 +39,9 @@ describe('sendMetrics', () => {
       url: config.urls[0]
     })
 
-    expect(response).toEqual('Metrics sent to 1 providers')
+    expect(response).toEqual(
+      'Metrics for https://twinandchic.com sent to 1 providers'
+    )
     expect(sendDatadogMetrics).toHaveBeenCalled()
   })
 
