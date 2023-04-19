@@ -1,4 +1,4 @@
-import {metricsMock} from '../../../../mocks/metrics'
+import {metricsMock} from '../../../mocks/metrics'
 import {metricsToDatadogMetricsMapper} from './metricsToDatadogMetricsMapper'
 
 describe('datadog > metricsToDatadogMetricsMapper', () => {

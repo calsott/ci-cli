@@ -5,7 +5,7 @@ import {loadRcFile} from './lib/loadRcFile'
 import {runLighhouse} from './runLighhouse'
 import {sendMetrics} from './sendMetrics'
 
-const defaultRcFilePath = './.calsot.js'
+const defaultRcFilePath = './.calsott.js'
 
 type StartParams = {
   rcFilePath?: string

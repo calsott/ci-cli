@@ -1,8 +1,8 @@
 import {metricsMock} from '../mocks/metrics'
-import {sendDatadogMetrics} from './adapters/providers/datadog/sendDatadogMetrics'
+import {sendDatadogMetrics} from './providers/datadog/sendDatadogMetrics'
 import {sendMetrics} from './sendMetrics'
 
-vi.mock('./adapters/providers/datadog/sendDatadogMetrics', async () => {
+vi.mock('./providers/datadog/sendDatadogMetrics', async () => {
   return {
     sendDatadogMetrics: vi.fn()
   }

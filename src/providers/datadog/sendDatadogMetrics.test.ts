@@ -1,6 +1,6 @@
 import mockedDatadogMetrics from 'datadog-metrics'
 
-import {metricsMock} from '../../../../mocks/metrics'
+import {metricsMock} from '../../../mocks/metrics'
 import {sendDatadogMetrics} from './sendDatadogMetrics'
 
 const originalEnv = process.env

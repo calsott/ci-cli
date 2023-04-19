@@ -1,5 +1,5 @@
-import {sendDatadogMetrics} from './adapters/providers/datadog/sendDatadogMetrics'
 import {ProviderNames} from './config/providers'
+import {sendDatadogMetrics} from './providers/datadog/sendDatadogMetrics'
 
 const providerFactory = {
   [ProviderNames.Datadog]: sendDatadogMetrics
