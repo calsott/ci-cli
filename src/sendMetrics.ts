@@ -1,5 +1,5 @@
-import {sendDatadogMetrics} from './adapters/providers/datadog/sendDatadogMetrics'
 import {ProviderNames} from './config/providers'
+import {sendDatadogMetrics} from './providers/datadog/sendDatadogMetrics'
 
 const providerFactory = {
   [ProviderNames.Datadog]: sendDatadogMetrics
@@ -23,5 +23,7 @@ export async function sendMetrics({metrics, config, url}: SendMetricsParams) {
     }
   }
 
-  return Promise.resolve(`Metrics sent to ${providersSent} providers`)
+  return Promise.resolve(
+    `Metrics for ${url.href} sent to ${providersSent} providers`
+  )
 }

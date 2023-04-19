@@ -1,4 +1,4 @@
-import {ProviderNames} from '../../../config/providers'
+import {ProviderNames} from '../../config/providers'
 // const options = {site: 'datadoghq.eu', host: 'calsott', prefix: 'calsott.'}
 
 export function getProviderOptions(config: ConfigFile) {

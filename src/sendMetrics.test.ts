@@ -1,8 +1,8 @@
 import {metricsMock} from '../mocks/metrics'
-import {sendDatadogMetrics} from './adapters/providers/datadog/sendDatadogMetrics'
+import {sendDatadogMetrics} from './providers/datadog/sendDatadogMetrics'
 import {sendMetrics} from './sendMetrics'
 
-vi.mock('./adapters/providers/datadog/sendDatadogMetrics', async () => {
+vi.mock('./providers/datadog/sendDatadogMetrics', async () => {
   return {
     sendDatadogMetrics: vi.fn()
   }
@@ -39,7 +39,9 @@ describe('sendMetrics', () => {
       url: config.urls[0]
     })
 
-    expect(response).toEqual('Metrics sent to 1 providers')
+    expect(response).toEqual(
+      'Metrics for https://twinandchic.com sent to 1 providers'
+    )
     expect(sendDatadogMetrics).toHaveBeenCalled()
   })
 

@@ -1,4 +1,4 @@
-import {getGithubActionsData} from './adapters/ci/getGithubActionsData'
+import {getGithubActionsData} from './adapters/githubActions/getGithubActionsData'
 
 async function getDataFromCI(): Promise<Build | null> {
   if (process.env.GITHUB_ACTIONS) {
