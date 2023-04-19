@@ -43,5 +43,5 @@ export async function start({rcFilePath = defaultRcFilePath}: StartParams) {
     }
   }
 
-  console.log(`> Audit traces sent to calsott.com`)
+  console.log(`> All metrics has been sent`)
 }

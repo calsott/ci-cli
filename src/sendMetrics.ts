@@ -24,6 +24,6 @@ export async function sendMetrics({metrics, config, url}: SendMetricsParams) {
   }
 
   return Promise.resolve(
-    `Metrics for ${url.href} sent to ${providersSent} providers`
+    `· Metrics for ${url.href} sent to ${providersSent} providers`
   )
 }

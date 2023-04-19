@@ -40,7 +40,7 @@ describe('sendMetrics', () => {
     })
 
     expect(response).toEqual(
-      'Metrics for https://twinandchic.com sent to 1 providers'
+      '· Metrics for https://twinandchic.com sent to 1 providers'
     )
     expect(sendDatadogMetrics).toHaveBeenCalled()
   })
