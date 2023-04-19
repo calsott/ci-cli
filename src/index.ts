@@ -32,12 +32,12 @@ export async function start({rcFilePath = defaultRcFilePath}: StartParams) {
     const result = await runLighhouse({url})
 
     if (result) {
+      console.log(`· Audit collected from ${url.href}`)
       const lhr = JSON.parse(result)
       const metrics = getMetricsFromLhr(lhr)
 
       const response = await sendMetrics({config, metrics, url})
       console.log(response)
-      console.log(`· Audit collected from ${url}`)
     } else {
       console.log(`· Audit failed for ${url}`)
     }
