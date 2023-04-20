@@ -40,7 +40,7 @@ export async function start({rcFilePath = defaultRcFilePath}: StartParams) {
       const lhr = JSON.parse(result)
       const metrics = getMetricsFromLhr(lhr)
 
-      const response = await sendMetrics({config, metrics, url})
+      const response = await sendMetrics({build, config, metrics, url})
       console.log(response)
     } else {
       console.log(`· Audit failed for ${url}`)

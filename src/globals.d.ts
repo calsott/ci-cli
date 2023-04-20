@@ -24,16 +24,17 @@ interface ConfigFile {
   providers: Provider[]
 }
 
-type SendMetricsParams = {
-  metrics: Metrics
-  config: ConfigFile
-  url: PageUrl
-}
-
 interface Build {
   author?: string
   branch?: string
   commitHash?: string
+}
+
+type SendMetricsParams = {
+  build: Build
+  metrics: Metrics
+  config: ConfigFile
+  url: PageUrl
 }
 
 type ClsMetric = {
