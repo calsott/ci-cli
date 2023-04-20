@@ -18,7 +18,6 @@ export async function start({rcFilePath = defaultRcFilePath}: StartParams) {
 
   if (!build) {
     console.log('not in CI')
-    // return
   } else {
     console.log(
       `> Data collected from CI triggered by commit: ${build.commitHash}`
