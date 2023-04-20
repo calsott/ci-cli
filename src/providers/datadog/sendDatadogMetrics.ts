@@ -1,9 +1,11 @@
 import ddMetrics from 'datadog-metrics'
 
 import {getProviderOptions} from './getProviderOptions'
+import {getTagsFromBuild} from './getTagsFromBuild'
 import {metricsToDatadogMetricsMapper} from './metricsToDatadogMetricsMapper'
 
 export async function sendDatadogMetrics({
+  build,
   metrics,
   config,
   url
@@ -12,8 +14,9 @@ export async function sendDatadogMetrics({
   const logger = new ddMetrics.BufferedMetricsLogger(options)
 
   const datadogMetrics = metricsToDatadogMetricsMapper(metrics)
+  const buildTags = getTagsFromBuild(build)
 
-  const tags = url.tags || []
+  const tags = [...(url.tags ? url.tags : []), ...buildTags]
 
   datadogMetrics.forEach(({key, value}) => {
     logger.gauge(key, value, tags)
