@@ -5,10 +5,7 @@ const {version} = require('../package.json')
 
 program.version(version, '    --version')
 
-program
-  .option('--config <path>', 'Path to config file')
-  .option('--token <token>', 'Access token')
-  .parse()
+program.option('--config <path>', 'Path to config file').parse()
 
 const {config, token} = program.opts(process.argv)
 
