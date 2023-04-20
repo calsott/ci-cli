@@ -14,6 +14,11 @@ type StartParams = {
 export async function start({rcFilePath = defaultRcFilePath}: StartParams) {
   console.log('> Starting audit...')
   const config = loadRcFile(rcFilePath)
+  if (!config) {
+    console.log('No config file found')
+    return
+  }
+
   const build = await getBuildData()
 
   if (!build) {

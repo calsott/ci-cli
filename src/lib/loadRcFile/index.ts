@@ -19,8 +19,12 @@ function parseFileContentToJSON(rcFilePath: string, rcFileContent: string) {
 }
 
 export function loadRcFile(pathToRcFile: string): ConfigFile {
-  const rcFilePath: string = resolve(process.cwd(), pathToRcFile)
-  const rcFileContent: string = fs.readFileSync(rcFilePath, 'utf8')
+  try {
+    const rcFilePath: string = resolve(process.cwd(), pathToRcFile)
+    const rcFileContent: string = fs.readFileSync(rcFilePath, 'utf8')
 
-  return parseFileContentToJSON(rcFilePath, rcFileContent)
+    return parseFileContentToJSON(rcFilePath, rcFileContent)
+  } catch (error) {
+    return null
+  }
 }
