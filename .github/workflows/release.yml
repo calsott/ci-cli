@@ -26,12 +26,14 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: 18
-        registry-url: 'https://registry.npmjs.org'
 
     - name: Install
+      run: npm ci
+
+    - name: NPM Auth
       run: |
-        echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" > ~/.npmrc
-        npm ci
+        npm config set registry http://registry.npmjs.org
+        echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" > .npmrc
 
     - name: Release
       run: node ./scripts/release/index.js

@@ -30,6 +30,7 @@ const prepareAutomaticRelease = async () => {
   await exec(`git config --global user.email "${githubEmail}"`)
   await exec(`git config --global user.name "${githubUser}"`)
   await exec('git remote rm origin')
+  console.log({authURL})
   await exec(`git remote add origin ${authURL} > /dev/null 2>&1`)
   await exec(`git checkout main`)
   await exec(`git pull origin main`)
