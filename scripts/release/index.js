@@ -37,11 +37,13 @@ const prepareAutomaticRelease = async () => {
 
 const releasePackage = async ({releaseType} = {}) => {
   await exec(`npm --no-git-tag-version version ${releaseType}`, {cwd})
+  await exec(`npm publish`, {cwd})
+
   await exec(`git add ${path.join(cwd, 'package.json')}`, {cwd})
 
   const {version} = getPackageJson(cwd, true)
 
-  const commitMsg = `release: v${version}  [skip ci]`
+  const commitMsg = `release: v${version} [skip ci]`
 
   await exec(`git commit -m "${commitMsg}"`, {cwd})
   await exec(`git commit --amend --no-verify --no-edit`, {cwd})
