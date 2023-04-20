@@ -32,7 +32,7 @@ jobs:
 
     - name: NPM Auth
       run: |
-        npm config set registry http://registry.npmjs.org
+        npm config set registry https://registry.npmjs.org
         echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" > .npmrc
 
     - name: Release
