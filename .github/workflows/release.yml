@@ -2,8 +2,8 @@ name: Release
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-  GIT_USER: rmoralp
-  GIT_EMAIL: rafamp89@gmail.com
+  GIT_USER: ${{ github.actor }}
+  GIT_EMAIL: "${{ github.actor }}@users.noreply.github.com"
 on:
   workflow_run:
     workflows: ['Tests']
