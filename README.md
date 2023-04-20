@@ -6,36 +6,16 @@
 
 <br />
 <div align="center">
-  <h3 align="center">Calsott - Continuous integration CLI</h3>
+  <h3 align="center">Calsott - Web Performance CLI</h3>
   <p align="center">
-    CLI for running lighthouse audits and sending reports to third party adapters
+    CLI for running lighthouse audits and sending reports to one or more providers
   </p>
 </div>
 <br />
 
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#install">Install</a></li>
-      </ul>
-    </li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#license">License</a></li>
-  </ol>
-</details>
+## Documentation
 
-## Getting Started
-
-### Install
-
-```bash
-npm install calsott-cli --save-dev
-```
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+Read the [documentation][docs] for more information.
 
 ## Roadmap:
 
@@ -59,3 +39,4 @@ Licensed under the [MIT license][license].
 <!-- Stuff -->
 [license]: https://github.com/calsott/ci-cli/blob/main/LICENSE.md
 [project-board]: https://github.com/orgs/calsott/projects/1/views/2
+[docs]: https://docs.calsott.com/
