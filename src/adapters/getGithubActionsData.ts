@@ -14,7 +14,8 @@ export async function getGithubActionsData(): Promise<Build> {
 
   const author =
     githubEvent?.head_commit?.author?.email || process.env.GITHUB_ACTOR
-  const branch = process.env.GITHUB_REF_NAME
+  const branch =
+    githubEvent?.pull_request?.head?.ref || process.env.GITHUB_REF_NAME
   const commitHash =
     githubEvent?.pull_request?.head?.sha || githubEvent?.head_commit?.id
   const pullRequestId = githubEvent?.pull_request?.number
