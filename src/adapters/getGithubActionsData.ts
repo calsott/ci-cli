@@ -3,6 +3,7 @@ import {readFile} from 'fs/promises'
 const getGitHubEvent = async () => {
   try {
     const file = await readFile(process.env.GITHUB_EVENT_PATH, 'utf-8')
+    console.log(file)
     return JSON.parse(file)
   } catch (e) {
     return {}
@@ -11,6 +12,8 @@ const getGitHubEvent = async () => {
 
 export async function getGithubActionsData(): Promise<Build> {
   const githubEvent = await getGitHubEvent()
+
+  console.log(githubEvent.pull_request.number)
 
   console.log(`>>> ${process.env.GITHUB_REF}`)
   const author =
