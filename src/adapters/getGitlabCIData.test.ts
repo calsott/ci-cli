@@ -3,7 +3,7 @@ import {getGitlabCIData} from './getGitlabCIData'
 const originalEnv = process.env
 
 const refName = 'main'
-const author = 'rafa moral <rafamp89@gmail.com>'
+const author = 'john.doe@gmail.com'
 const commitSha = 'f2dfa08972bc1cefcfa2ad9ebac1010bc4fb777b'
 const mrId = '151'
 
@@ -15,7 +15,7 @@ describe('getGitlabCIData', () => {
   it('should returns author, branch and commitHash in branch pipeline', async () => {
     process.env = {
       ...originalEnv,
-      CI_COMMIT_AUTHOR: author,
+      GITLAB_USER_EMAIL: author,
       CI_COMMIT_BRANCH: refName,
       CI_COMMIT_SHA: commitSha
     }
@@ -32,7 +32,7 @@ describe('getGitlabCIData', () => {
   it('should returns author, branch, commitHash and pull request Id in a merge request pipeline', async () => {
     process.env = {
       ...originalEnv,
-      CI_COMMIT_AUTHOR: author,
+      GITLAB_USER_EMAIL: author,
       CI_COMMIT_REF_NAME: refName,
       CI_COMMIT_SHA: commitSha,
       CI_MERGE_REQUEST_IID: mrId
