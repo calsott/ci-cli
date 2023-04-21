@@ -12,6 +12,7 @@ const getGitHubEvent = async () => {
 export async function getGithubActionsData(): Promise<Build> {
   const githubEvent = await getGitHubEvent()
 
+  console.log(`github ref ${process.env.GITHUB_REF}`)
   const author =
     githubEvent?.head_commit?.author?.email || process.env.GITHUB_ACTOR
   const branch = process.env.GITHUB_REF_NAME
