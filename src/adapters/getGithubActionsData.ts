@@ -20,17 +20,10 @@ export async function getGithubActionsData(): Promise<Build> {
     githubEvent?.pull_request?.head?.sha || githubEvent?.head_commit?.id
   const pullRequestId = githubEvent?.pull_request?.number
 
-  console.log({
-    author,
-    branch,
-    commitHash,
-    ...(pullRequestId && {pullRequestId})
-  })
-
   return {
     author,
     branch,
     commitHash,
-    ...(pullRequestId && {pullRequestId})
+    ...(pullRequestId && {pullRequestId: String(pullRequestId)})
   }
 }

@@ -41,12 +41,9 @@ describe('getGithubActionsData', () => {
   })
 
   it('should returns pull request id for pull request trigger', async () => {
-    const refName = 'fix/bug'
-
     process.env = {
       ...originalEnv,
       GITHUB_EVENT_PATH: githubPREventPathMock,
-      GITHUB_REF_NAME: refName,
       GITHUB_ACTOR: fallbackActor
     }
 
@@ -54,9 +51,9 @@ describe('getGithubActionsData', () => {
 
     expect(data).toEqual({
       author: fallbackActor,
-      branch: refName,
+      branch: 'fix/get-pr-number',
       commitHash: '8fc87d2cfeee620c066b47a68c0be32d23e60434',
-      pullRequestId: 14
+      pullRequestId: '14'
     })
   })
 })
