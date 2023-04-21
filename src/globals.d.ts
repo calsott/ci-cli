@@ -28,6 +28,7 @@ interface Build {
   author?: string
   branch?: string
   commitHash?: string
+  pullRequestId?: string
 }
 
 type SendMetricsParams = {
