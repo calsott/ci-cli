@@ -1,6 +1,6 @@
 {
   "name": "calsott-cli",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Automate web performance audits in CI, get performance metrics, and send metrics to different providers.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
