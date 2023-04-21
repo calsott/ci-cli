@@ -1,5 +1,5 @@
 name: Audit
-on: [push]
+on: [push, pull_request]
 env:
   DATADOG_API_KEY: ${{ secrets.DATADOG_API_KEY }}
   DATADOG_APP_KEY: ${{ secrets.DATADOG_APP_KEY }}
