@@ -12,15 +12,18 @@ const getGitHubEvent = async () => {
 export async function getGithubActionsData(): Promise<Build> {
   const githubEvent = await getGitHubEvent()
 
-  console.log(`github ref ${process.env.GITHUB_REF}`)
   const author =
     githubEvent?.head_commit?.author?.email || process.env.GITHUB_ACTOR
-  const branch = process.env.GITHUB_REF_NAME
-  const commitHash = githubEvent?.head_commit?.id
+  const branch =
+    githubEvent?.pull_request?.head?.ref || process.env.GITHUB_REF_NAME
+  const commitHash =
+    githubEvent?.pull_request?.head?.sha || githubEvent?.head_commit?.id
+  const pullRequestId = githubEvent?.pull_request?.number
 
   return {
     author,
     branch,
-    commitHash
+    commitHash,
+    ...(pullRequestId && {pullRequestId: String(pullRequestId)})
   }
 }

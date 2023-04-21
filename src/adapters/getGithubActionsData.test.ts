@@ -2,7 +2,9 @@ import {getGithubActionsData} from './getGithubActionsData'
 
 const originalEnv = process.env
 const githubEventPathMock = './mocks/githubEventPath.json'
+const githubPREventPathMock = './mocks/githubEventPathPullRequest.json'
 const githubRefName = 'main'
+const fallbackActor = 'john.doe@gmail.com'
 
 describe('getGithubActionsData', () => {
   afterAll(() => {
@@ -26,8 +28,6 @@ describe('getGithubActionsData', () => {
   })
 
   it('should use process.env.GITHUB_REF_NAME as author fallback', async () => {
-    const fallbackActor = 'john.doe@gmail.com'
-
     process.env = {
       ...originalEnv,
       GITHUB_EVENT_PATH: undefined,
@@ -38,5 +38,22 @@ describe('getGithubActionsData', () => {
     const data = await getGithubActionsData()
 
     expect(data.author).toEqual(fallbackActor)
+  })
+
+  it('should returns pull request id for pull request trigger', async () => {
+    process.env = {
+      ...originalEnv,
+      GITHUB_EVENT_PATH: githubPREventPathMock,
+      GITHUB_ACTOR: fallbackActor
+    }
+
+    const data = await getGithubActionsData()
+
+    expect(data).toEqual({
+      author: fallbackActor,
+      branch: 'fix/get-pr-number',
+      commitHash: '8fc87d2cfeee620c066b47a68c0be32d23e60434',
+      pullRequestId: '14'
+    })
   })
 })
